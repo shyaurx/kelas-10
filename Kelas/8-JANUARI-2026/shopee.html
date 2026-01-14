@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopee</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f5f5;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: linear-gradient(to bottom, #ff5722, #ff9800);
+            color: white;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* SEARCH */
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 16px 0 28px;
+        }
+
+        .search-area {
+            width: 50%;
+            position: relative;
+        }
+
+        .search-box {
+            display: flex;
+            background-color: white;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: none;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-btn {
+            background: #ff5722;
+            border: none;
+            color: white;
+            padding: 0 18px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* DROPDOWN REKOMENDASI */
+        .suggestion-box {
+            position: absolute;
+            top: 42px;
+            width: 100%;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none;
+            z-index: 10;
+            color: rgba(92, 92, 92);
+        }
+
+        .search-area:focus-within .suggestion-box {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: 10px 14px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .suggestion-item:hover {
+            background: #f5f5f5;
+        }
+
+        /* REKOMENDASI BAWAH */
+        .search-recommend {
+            display: flex;
+            gap: 14px;
+            font-size: 12px;
+            padding-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-recommend a {
+            color: #ffe0d1;
+            text-decoration: none;
+        }
+
+        .search-recommend a:hover {
+            text-decoration: underline;
+        }
+
+        /* DISCOUNT BANNER */
+        .discount-selection {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        .discount-banner {
+            display: flex;
+            gap: 16px;
+        }
+
+        /* BANNER BESAR */
+        .discount-main {
+            flex: 2;
+            background: linear-gradient(134deg, #ff5722, #ff9800);
+            color: white;
+            border-radius: 12px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .discount-main h2 {
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .discount-main p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .discount-badge {
+            background: #0a2a66;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 22px;
+            font-weight: bold;
+            width: fit-content;
+        }
+
+        /* BANNER KANAN */
+        .discount-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .discount-card {
+            flex: 1;
+            border-radius: 12px;
+            color: white;
+            padding: 24px;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .mall {
+            background: linear-gradient(135deg, #c62828, #e53935);
+        }
+
+        /* FEATURE GRID */
+        .feature-section {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 16px;
+        }
+
+        .feature-item {
+            background: white;
+            border-radius: 8px;
+            padding: 14px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            font-size: 12px;
+            margin: 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="#">Seller Center |</a>
+                <a href="#">Start Selling |</a>
+                <a href="#">Download |</a>
+                <a href="#">Follow us</a>
+            </div>
+            <div class="nav-right">
+                <a href="#">Notifications</a>
+                <a href="#">Help</a>
+                <a href="#">Sign Up</a>
+                <a href="#">Login</a>
+            </div>
+        </div>
+
+        <!-- SEARCH -->
+         <div class="search-wrapper">
+            <img src="img/shopee.webp" width="10%">
+            <div class="search-area">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Daftar & Dapat Voucher Gratis"/>
+                    <button class="search-btn">🔍</button>
+                </div>
+
+                <!-- Dropdown Rekomendasi -->
+                <div class="suggestion-box">
+                    <div class="suggestion-item">Skintint Wardah</div>
+                    <div class="suggestion-item">Masker Jejuby</div>
+                    <div class="suggestion-item">Tumbler Stainless</div>
+                    <div class="suggestion-item">Smartwatch</div>
+                    <div class="suggestion-item">Case Handphone</div>
+                    <div class="suggestion-item">Kemeja Wanita</div>
+                </div>
+
+                <!-- Teks Bawah -->
+                <div class="search-recommend">
+                    <a href="#">Skintint Wardah</a>
+                    <a href="#">Masker Jejuby</a>
+                    <a href="#">Tumbler Stainless</a>
+                    <a href="#">Smartwatch</a>
+                    <a href="#">Case Handphone</a>
+                    <a href="#">Kemeja Wanita</a>
+                </div>
+            </div>
+         </div>
+    </nav>
+
+     <!-- DISCOUNT BENNER -->
+    <section class="discount-selection">
+        <div class="discount-banner">
+
+            <!-- Kiri -->
+            <div class="discount-main">
+                <h2>Shopee Pilih Lokal</h2>
+                <p>Tempat Belanja Produk No.1</p>
+                <div class="discount-badge">EKSTRA DISKON 15%</div>
+            </div>
+
+            <!-- Kanan -->
+            <div class="discount-side">
+                <div class="discount-card mall">
+                    Shopee Mall <br>
+                    100% ORI
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURE MENU -->
+    <section class="feature-section">
+        <div class="feature-grid">
+            <div class="feature-item">
+                <img src="img/hp.png" alt="">
+                <p>Pulsa, Tagihan, dan Tiket</p>
+            </div>
+            <div class="feature-item">
+                <img src="img/shopefood.png" alt="">
+                <p>ShopeeFood</p>
+            </div>
+            <div class="feature-item">
+                <img src="img/shopeegames.png" alt="">
+                <p>Shopee Games</p>
+            </div>
+            <div class="feature-item">
+                <img src="img/gratisongkir.png" alt="">
+                <p>Gratis Ongkir</p>
+            </div>
+            <div class="feature-item">
+                <img src="img/flashsale.png" alt="">
+                <p>Flash Sale</p>
+            </div>
+            <div class="feature-item">
+                <img src="img/voucher.png" alt="">
+                <p>Voucher</p>
+            </div>
+            <div class="feature-item">
+                <img src="img/murah.png" alt="">
+                <p>Murah Lebay</p>
+            </div>
+            <div class="feature-item">
+                <img src="img/shopeemall.webp" alt="">
+                <p>Shopee Mall</p>
+            </div>
+            <div class="feature-item">
+                <img src="img/shopeepay.png" alt="">
+                <p>ShopeePay Sekitarmu</p>
+            </div>
+            <div class="feature-item">
+                <img src="img/lainnya.png" alt="">
+                <p>Lihat Semua</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
